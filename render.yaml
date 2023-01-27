@@ -1,1 +1,4 @@
-runtime: python-3.10
+services:
+  web:
+    runtime: python-3.10
+    command: python3 main.py
