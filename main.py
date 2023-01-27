@@ -1,6 +1,7 @@
 import os, time
 import telebot
 from flask import Flask, request
+import langchaintest
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 #headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"}
@@ -17,8 +18,9 @@ def send_welcome(message):
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
     bot.send_chat_action(message.chat.id, action="typing")
-    time.sleep(5)
-    bot.reply_to(message, message.text)
+    #time.sleep(5)
+    text = reply(message.text)
+    bot.reply_to(message, text)
 
 # Webhook
 @app.route('/' + BOT_TOKEN, methods=['POST'])
