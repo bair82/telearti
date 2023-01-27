@@ -1,4 +1,4 @@
-import os
+import os, time
 import telebot
 from flask import Flask, request
 
@@ -16,6 +16,8 @@ def send_welcome(message):
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
+    bot.send_chat_action(message.chat.id, action="typing")
+    time.sleep(5)
     bot.reply_to(message, message.text)
 
 # Webhook
