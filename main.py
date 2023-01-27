@@ -19,7 +19,7 @@ def send_welcome(message):
 def echo_all(message):
     bot.send_chat_action(message.chat.id, action="typing")
     #time.sleep(5)
-    text = reply(message.text)
+    text = langchaintest.reply(message.text)
     bot.reply_to(message, text)
 
 # Webhook
