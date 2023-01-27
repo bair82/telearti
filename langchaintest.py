@@ -5,7 +5,7 @@ langchain.verbose=True
 from langchain.chains.conversation.memory import ConversationSummaryBufferMemory
 
 stop_words = ["AI:","Human:"]
-llm = Cohere(model="command-xlarge-nightly",temperature=0, model_kwargs={'stop': stop_words})
+llm = Cohere(model="command-xlarge-nightly",temperature=0)
 
 conversation_with_summary = langchain.ConversationChain(
     llm=llm, 
