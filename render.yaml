@@ -1,4 +1,7 @@
 services:
-  web:
+  # A Docker web service
+  - type: web
+    name: telearti
+    env: docker
+    rootDir: /
     runtime: python-3.10
-    command: python3 main.py
