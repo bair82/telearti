@@ -21,9 +21,9 @@ def send_welcome(message):
 def echo_all(message):
     bot.send_chat_action(message.chat.id, action="typing")
     if message.message_id not in message_history:
+        message_history.append(message.message_id)
         text = langchaintest.reply(message.text)
         bot.reply_to(message, text)
-        message_history.append(message.message_id)
         if len(message_history) > 50:
             message_history.pop(0)
 
