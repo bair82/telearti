@@ -11,6 +11,8 @@ URL = "https://telearti.onrender.com/"
 bot = telebot.TeleBot(BOT_TOKEN, threaded=False)
 app = Flask(__name__)
 
+message_history = []
+
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
     bot.reply_to(message, "Howdy, how are you doing?")
@@ -18,9 +20,12 @@ def send_welcome(message):
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
     bot.send_chat_action(message.chat.id, action="typing")
-    #time.sleep(5)
-    text = langchaintest.reply(message.text)
-    bot.reply_to(message, text)
+    if message.message_id not in message_history:
+        text = langchaintest.reply(message.text)
+        bot.reply_to(message, text)
+        message_history.append(message.message_id)
+        if len(message_history) > 50:
+            message_history.pop(0)
 
 # Webhook
 @app.route('/' + BOT_TOKEN, methods=['POST'])
