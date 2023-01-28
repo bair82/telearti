@@ -1,5 +1,4 @@
 pyTelegramBotAPI>=4.9.0
 flask>=2.2.2
 cohere
-transformers
 langchain>=0.0.73
