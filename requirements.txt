@@ -1,4 +1,5 @@
 pyTelegramBotAPI>=4.9.0
 flask>=2.2.2
 cohere
+transformers
 git+https://github.com/hwchase17/langchain.git
