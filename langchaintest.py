@@ -4,8 +4,8 @@ from langchain.llms import Cohere, OpenAI
 langchain.verbose=True
 from langchain.chains.conversation.memory import ConversationSummaryBufferMemory
 
-stop_words = ["AI:","Human:"]
-llm = Cohere(model="command-xlarge-nightly",temperature=0)
+stop_words = ["\nAI:","\nHuman:"]
+llm = Cohere(model="command-xlarge-nightly",temperature=0, stop=stop_words)
 
 conversation_with_summary = langchain.ConversationChain(
     llm=llm, 
