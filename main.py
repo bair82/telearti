@@ -41,8 +41,6 @@ def add_todo_task(task):
         print("Error")
         
 
-result = notion.pages.create(parent={"database_id": db_id}, properties=new_page)
-
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
     bot.reply_to(message, "Howdy, how are you doing?")
