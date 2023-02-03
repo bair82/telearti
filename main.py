@@ -50,7 +50,7 @@ def send_welcome(message):
     bot.send_chat_action(message.chat.id, action="typing")
     if message.message_id not in message_history:
         message_history.append(message.message_id)
-        add_todo_task(message.text)
+        add_todo_task(message.text.lstrip("/todo".strip())
         bot.reply_to(message, "Task added!")
         if len(message_history) > 50:
             message_history.pop(0)
