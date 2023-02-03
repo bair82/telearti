@@ -3,3 +3,4 @@ flask>=2.2.2
 cohere
 langchain>=0.0.73
 transformers
+notion_client
