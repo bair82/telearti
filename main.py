@@ -2,9 +2,14 @@ import os, time
 import telebot
 from flask import Flask, request
 import langchaintest
+from notion_client import Client
+
+NOTION_KEY = os.environ["NOTION_KEY"]
+notion = Client(auth=NOTION_KEY)
+db_id = "c2891605-abc6-457c-8125-baaf93b6ce61"
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
-#headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"}
+
 
 URL = "https://telearti.onrender.com/"
 
@@ -13,9 +18,44 @@ app = Flask(__name__)
 
 message_history = []
 
+def add_todo_task(task):
+    try:
+        new_page = {
+          "Name": {
+        "title": [{
+          "type": "text",
+          "text": {
+            "content": f"{task}"
+          }
+        }]
+      },
+      "Status": {
+        "select": {
+          "id": '1'
+        }
+      }
+    }
+        result = notion.pages.create(parent={"database_id": db_id},
+                             properties=new_page)
+    except:
+        print("Error")
+        
+
+result = notion.pages.create(parent={"database_id": db_id}, properties=new_page)
+
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
     bot.reply_to(message, "Howdy, how are you doing?")
+
+@bot.message_handler(commands=['todo'])
+def send_welcome(message):
+    bot.send_chat_action(message.chat.id, action="typing")
+    if message.message_id not in message_history:
+        message_history.append(message.message_id)
+        add_todo_task(message.text)
+        bot.reply_to(message, "Task added!")
+        if len(message_history) > 50:
+            message_history.pop(0)
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
