@@ -17,8 +17,9 @@ template = """Arti is an intelligent conversational AI created to assist Bair in
 Here's the conversation Arti and Bair are having now:
 --- Current conversation ---
 {history}
---- End of current conversation ---
-Bair's new message: {input}
+------
+Bair's most recent message: {input}
+------
 Considering all of the above, write below an appropriate and truthful response to Bair's most recent message in this conversation.
 Arti:"""
 PROMPT = PromptTemplate(
