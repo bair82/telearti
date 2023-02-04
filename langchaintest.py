@@ -22,6 +22,7 @@ PROMPT = PromptTemplate(
 )
 conversation_with_summary = langchain.ConversationChain(
     llm=llm, 
+    prompt = PROMPT,
     # We set a very low max_token_limit for the purposes of testing.
     memory=ConversationSummaryBufferMemory(llm=llm, max_token_limit=500),
     verbose=True
