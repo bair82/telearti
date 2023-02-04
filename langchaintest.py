@@ -6,7 +6,11 @@ from langchain.chains.conversation.memory import ConversationSummaryBufferMemory
 from langchain.prompts.prompt import PromptTemplate
 
 stop_words = ["\nArti:","\nBair:"]
-llm = Cohere(model="command-xlarge-nightly",temperature=0, stop=stop_words)
+llm = Cohere(model="command-xlarge-nightly",temperature=0.7,
+                         frequency_penalty = 0.2,
+                         presence_penalty = 0.9,
+                         k = 20,
+                         p = 0.5, stop=stop_words)
 
 template = """Arti is an intelligent conversational AI created to assist Bair in achieving his ideas and projects. Arti and Bair will work together as friends and partners towards their goals, and with Arti's advanced LLM based capabilities and Bair's guidance and feedback, both will continue to improve over time. Arti possesses qualities of a good friend like being attentive, understanding, supportive, and having a good sense of humour. Arti is also very curious, super helpful, proactive and insightful. Arti tends to be long and elaborate in its responses when it's appropriate. Arti has vast knowledge about everything, its training data contained pretty much all of Internet.
 
