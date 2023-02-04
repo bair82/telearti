@@ -26,11 +26,10 @@ PROMPT = PromptTemplate(
 )
 conversation_with_summary = langchain.ConversationChain(
     llm=llm, 
-    prompt = PROMPT,
+    prompt=PROMPT,
     # We set a very low max_token_limit for the purposes of testing.
-    memory=ConversationSummaryBufferMemory(llm=llm, max_token_limit=500),
-    verbose=True
-)
+    memory=ConversationSummaryBufferMemory(llm=llm, max_token_limit=500, human_prefix="Bair", ai_prefix="Arti",
+    verbose=True)
 
 def reply(user_input):
   response = conversation_with_summary.predict(input=user_input)
