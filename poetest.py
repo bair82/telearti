@@ -1,4 +1,4 @@
-from POE import load_chat_id_map, clear_context, send_message, get_latest_message, set_auth
+from poe import load_chat_id_map, clear_context, send_message, get_latest_message, set_auth
 import os
 
 FK = os.environ["FORMKEY"]
