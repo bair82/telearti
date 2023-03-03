@@ -1,7 +1,7 @@
 import os, time
 import telebot
 from flask import Flask, request
-import langchaintest
+import langchaintest, poe
 from notion_client import Client
 
 NOTION_KEY = os.environ["NOTION_KEY"]
@@ -60,7 +60,8 @@ def echo_all(message):
     bot.send_chat_action(message.chat.id, action="typing")
     if message.message_id not in message_history:
         message_history.append(message.message_id)
-        text = langchaintest.reply(message.text)
+        #text = langchaintest.reply(message.text)
+        text = poetest.reply(message.text)
         bot.reply_to(message, text)
         if len(message_history) > 50:
             message_history.pop(0)
