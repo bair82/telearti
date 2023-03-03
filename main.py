@@ -1,7 +1,7 @@
 import os, time
 import telebot
 from flask import Flask, request
-import langchaintest, poe
+import langchaintest, poetest
 from notion_client import Client
 
 NOTION_KEY = os.environ["NOTION_KEY"]
